@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("http://getwallpapers.com/wallpaper/full/d/5/2/15062.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            overflow: hidden;
+            animation: fall 10s linear
+        }
+
+        #nav {
+            display: flex;
+            height: 100px;
+           background: linear-gradient(45deg,#2B2B2B,rgb(17, 187, 187),#2B2B2B);
+          
+            position: absolute;
+            top: 0;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        #nav img {
+            position: absolute;
+            left: 20px;
+            width: 80px;
+            height: auto;
+        }
+
+        #nav h1 {
+            margin-left: 120px;
+            color:white;
+        }
+
+        #pos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        #box {
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            width: 400px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 10px;
+            background: white;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        #box label {
+            font-weight: bold;
+        }
+
+        #box input[type="email"],
+        #box input[type="password"] {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        #box input[type="email"]:focus,
+        #box input[type="password"]:focus {
+            border-color: #20B2AA;
+            outline: none;
+        }
+
+        .login-button {
+            background: linear-gradient(90deg, #9C27B0, #E040FB);
+            color: white;  
+            border: none;  
+            padding: 15px 30px;  
+            border-radius: 5px;  
+            font-size: 16px;  
+            cursor: pointer;  
+            transition: background 0.3s;
+        }
+        .login-button:hover {
+            background: linear-gradient(90deg,  #E040FB,#9C27B0);
+        }
+        .reset-button {  
+            background: linear-gradient(45deg, #FF6F61, #D94D3B);  
+            color: white;  
+            border: none;  
+            padding: 15px 30px;  
+            border-radius: 5px;  
+            font-size: 16px;  
+            cursor: pointer;  
+            transition: background 0.3s;  
+        }  
+        
+        .reset-button:hover {  
+            background: linear-gradient(45deg, #D94D3B, #FF6F61);
+        }  
+
+        #btn {
+            display: flex;
+            gap: 15px;
+        }
+
+
+      
+
+       
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <!--Logo-->
+        <img src="https://as2.ftcdn.net/v2/jpg/04/92/55/15/1000_F_492551542_UiAoH0DyhL1ZHH9T24masCQZBa95DyW1.jpg">
+        <h1>Code Addict</h1>
+    </div>
+    <div id="pos">
+        <form action="/login" method="POST">
+            <div id="box">
+                <div id="one">
+                    <label for="email">Email</label>
+                    <label>:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div id="two">
+                    <label for="pass">Password</label>
+                    <label>:</label>
+                    <input type="password" id="pass" name="pass" required>
+                </div>
+
+                <div id="btn">
+                    <button type="submit" class="login-button">Log In</button>
+                    <button type="reset" class="reset-button">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('input[type="reset"]').addEventListener('click', function() {
+            document.getElementById('email').value = '';
+            document.getElementById('pass').value = '';
+        });
+
+       
+    </script>
+</body>
+</html>

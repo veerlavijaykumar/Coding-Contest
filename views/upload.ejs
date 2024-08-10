@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #00ff00; /* Matrix Green */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background-image: url('https://png.pngtree.com/background/20211217/original/pngtree-matrix-code-green-digital-abstract-background-picture-image_1593628.jpg'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: backgroundFade 20s infinite alternate;
+        }
+        
+        @keyframes backgroundFade {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        h1, h2 {
+            color: #00ff00; /* Matrix Green */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .size
+        {
+            width:300px;
+            height:50px;
+            background-color:rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+
+        }
+        
+        form {
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+            color: #00ff00; 
+        }
+        
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #00ff00;
+            box-sizing: border-box;
+            background-color: black;
+            color: #00ff00; 
+        }
+        
+        input[type="submit"] {
+            background-color: #00cc00;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #009900;
+        }
+        
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #00ff00; 
+            color: #00ff00; /* Matrix Green */
+        }
+        
+        th {
+            background-color: rgba(0, 0, 0, 0.9); /* Slightly darker semi-transparent black */
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: rgba(0, 255, 0, 0.1); /* Faint green highlight on hover */
+        }
+        
+        .delete-button {
+            background-color: #00cc00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .delete-button:hover {
+            background-color: #009900;
+        }
+        
+        /* Clock and Date Styling */
+        #clock-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #00ff00; 
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        #clock {
+            font-size: 36px;
+            color: #00ff00; 
+            margin-bottom: 10px;
+        }
+        
+        #date {
+            font-size: 18px;
+            color: #00ff00; /* Matrix Green */
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.9); 
+            color: #00ff00;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 16px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="clock-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+    </div>
+
+    <h1 class="size">Upload Problems</h1>
+    <form action="/upload1" method="POST">
+        <label for="problem_name">Problem Name</label>
+        <input type="text" id="problem_name" name="problem_name" required>
+        
+        <label for="problem_number">Problem Number</label>
+        <input type="text" id="problem_number" name="problem_no" required>
+        
+        <label for="problem_link">Problem Link</label>
+        <input type="text" id="problem_link" name="problem_link" required>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <h2 class="size">Existing Problems</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Problem Number</th>
+                <th>Problem Name</th>
+                <th>Problem Link</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% problems.forEach(function(problem) { %>
+                <tr>
+                    <td><%= problem.problem_no %></td>
+                    <td><%= problem.problem_name %></td>
+                    <td><%= problem.problem_link %></td>
+                    <td>
+                        <form action="/delete/<%= problem._id %>" method="get">
+                            <input type="submit" class="delete-button" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    
+    <h2 class="size">View Screenshots</h2>
+    <form action="/view-screenshots" method="get">
+        <input type="submit" class="view-screenshots-button" value="View Screenshots">
+    </form>
+
+    <script>
+        function updateTime() {
+            const clockElement = document.getElementById('clock');
+            const dateElement = document.getElementById('date');
+            const now = new Date();
+
+            // Format time as HH:MM:SS
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
+
+            // Format date as Weekday, Month Day, Year
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const date = now.toLocaleDateString('en-US', options);
+
+            clockElement.textContent = time;
+            dateElement.textContent = date;
+        }
+
+        // Update the clock every second
+        setInterval(updateTime, 1000);
+
+        updateTime();
+    </script>
+    <footer>
+        &COPY; Made with Love &hearts;
+    </footer>
+    
+</body>
+</html>

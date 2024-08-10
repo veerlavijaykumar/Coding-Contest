@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Screenshots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #00ff00; /* Matrix Green */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background-image: url('https://png.pngtree.com/background/20211217/original/pngtree-matrix-code-green-digital-abstract-background-picture-image_1593628.jpg'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: backgroundFade 20s infinite alternate;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        @keyframes backgroundFade {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        h1 {
+            color: #00ff00; /* Matrix Green */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            width: 500px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #00ff00; /* Matrix Green */
+            color: #00ff00; /* Matrix Green */
+        }
+        
+        th {
+            background-color: rgba(0, 0, 0, 0.9); 
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        tr:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        
+        img {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: width 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        img[data-expanded="true"] {
+            width: 500px;
+        }
+        
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00cc00;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        a:hover {
+            background-color: #009900;
+        }
+        
+        #clock-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #00ff00;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        #clock {
+            font-size: 36px;
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+        
+        #date {
+            font-size: 18px;
+            color: #00ff00; 
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.9); 
+            color: #00ff00; 
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: 16px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="clock-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+    </div>
+
+    <h1>Uploaded Screenshots</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Screenshot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% screenshots.forEach(function(screenshot) { %>
+                    <tr>
+                        <td><%= screenshot.name %></td>
+                        <td>
+                            <img src="data:image/png;base64,<%= screenshot.screenshot.toString('base64') %>" 
+                                 alt="<%= screenshot.name %>" 
+                                 onclick="fun(this)">
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+  
+    <a href="/login">Back to Upload</a>
+
+    <script>
+        function fun(image) {
+            if (image.dataset.expanded === "true") {
+                image.style.width = "50px";
+                image.dataset.expanded = "false";
+            } else {
+                image.style.width = "500px";
+                image.dataset.expanded = "true";
+            }
+        }
+
+        function updateTime() {
+            const clockElement = document.getElementById('clock');
+            const dateElement = document.getElementById('date');
+            const now = new Date();
+
+            // Format time as HH:MM:SS
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
+
+            // Format date as Weekday, Month Day, Year
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const date = now.toLocaleDateString('en-US', options);
+
+            clockElement.textContent = time;
+            dateElement.textContent = date;
+        }
+
+        // Update the clock every second
+        setInterval(updateTime, 1000);
+
+        updateTime();
+    </script>
+    <footer>
+        &COPY; Made with Love &hearts;
+    </footer>
+    
+</body>
+</html>

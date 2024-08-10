@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem List</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff; /* White color for better readability */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('https://image.freepik.com/free-vector/gradient-abstract-background-design_23-2149066043.jpg'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: backgroundFade 20s infinite alternate;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative; /* To position the date and time absolutely */
+        }
+        
+        @keyframes backgroundFade {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        h1, h2 {
+            width: 300px;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgb(0, 255, 0); 
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        
+        
+        h2 {
+            margin-top: 20px;
+            font-size: 28px;
+        }
+        
+        ul {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            padding: 0;
+            list-style: none;
+            background: linear-gradient(135deg, #ffb347, #ffcc33); /* Orange to yellow gradient */
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+        
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #f7d14c; /* Light yellow for contrast */
+            color: #333333; /* Dark text for readability */
+        }
+        
+        a {
+            color: #333333; /* Dark color for links */
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #555555; /* Slightly lighter on hover */
+        }
+        
+        form {
+            background: linear-gradient(135deg, #ffb347, #ffcc33); /* Orange to yellow gradient */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #333333; /* Dark color for labels */
+        }
+        
+        input[type="text"],
+        input[type="file"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #f7d14c; /* Light yellow for borders */
+            box-sizing: border-box;
+            background-color: #ffffff; /* White background for inputs */
+            color: #333333; /* Dark text color */
+            font-size: 16px;
+        }
+        
+        input[type="submit"] {
+            background-color: #ffb347; /* Orange color for the submit button */
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #ffcc33; /* Yellow on hover */
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        #clock-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #00ff00; 
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        #clock {
+            font-size: 36px;
+            color: #00ff00; 
+            margin-bottom: 10px;
+        }
+        
+        #date {
+            font-size: 18px;
+            color: #00ff00; /* Matrix Green */
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        footer {
+            width: 100%;
+            height: 50px;
+            background-color: #333333;
+            color:  #ffb347; /* White text for contrast */
+            text-align: center;
+            line-height: 50px; /* Center text vertically */
+            position: relative;
+            bottom: 0;
+            font-size: 18px;
+        }
+        #pl
+        {
+            color:blue;
+        }
+
+    </style>        
+</head>
+<body>
+    <h1>Problem List</h1>
+    <ul>
+        <% problems.forEach(problem => { %>
+            <li>
+                <strong>Problem No:</strong> <%= problem.problem_no %> <br>
+                <strong>Problem Name:</strong> <%= problem.problem_name %> <br>
+                <strong>Problem Link:</strong> <a href="<%= problem.problem_link %>" id="pl"><%= problem.problem_link %></a>
+            </li>
+        <% }) %>
+    </ul>
+    <h2>Upload Screenshot</h2>
+    <form action="/screenshot" method="post" enctype="multipart/form-data">
+        <label for="uname">Enter your name</label>
+        <input type="text" id="uname" name="uname" required>
+        <label for="screenshot">Choose Screenshot</label>
+        <input type="file" id="screenshot" name="screenshot" required>
+        <input type="submit" value="Upload Screenshot">
+    </form>
+   
+    
+    <div id="clock-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+    </div>
+    <script>
+    function updateTime() {
+            const clockElement = document.getElementById('clock');
+            const dateElement = document.getElementById('date');
+            const now = new Date();
+
+            // Format time as HH:MM:SS
+            const time = now.toLocaleTimeString('en-US', { hour12: true });
+
+            // Format date as Weekday, Month Day, Year
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const date = now.toLocaleDateString('en-US', options);
+
+            clockElement.textContent = time;
+            dateElement.textContent = date;
+        }
+
+        // Update the clock every second
+        setInterval(updateTime, 1000);
+
+        updateTime();
+    </script>
+    <footer>
+        &COPY; Made with Love &hearts;
+    </footer>
+    </body>
+    </html>
