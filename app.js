@@ -113,5 +113,9 @@ app.get('/view-screenshots', async (req, res) => {
         res.status(500).send("Error fetching screenshots");
     }
 });
+app.get('/back',(req,res)=>
+    {
+        res.redirect('contest');
+    });
 
 
