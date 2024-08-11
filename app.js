@@ -113,9 +113,10 @@ app.get('/view-screenshots', async (req, res) => {
         res.status(500).send("Error fetching screenshots");
     }
 });
-app.get('/back',(req,res)=>
-    {
-        res.render('contest');
-    });
+app.get("/back", async(req, res) => {
+    const problems = await Problem.find({});
+    console.log("Back button clicked, returning to contest page");
+    res.render('contest',{ problems: problems });
+});
 
 
