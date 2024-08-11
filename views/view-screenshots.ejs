@@ -179,6 +179,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Screenshot</th>
+                    <th>Programming Language</th>
                 </tr>
             </thead>
             <tbody>
@@ -190,6 +191,7 @@
                                  alt="<%= screenshot.name %>" 
                                  onclick="fun(this)">
                         </td>
+                        <td><%=screenshot.programming_language%></td>
                     </tr>
                 <% }); %>
             </tbody>
