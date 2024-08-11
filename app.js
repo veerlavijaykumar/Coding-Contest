@@ -115,7 +115,7 @@ app.get('/view-screenshots', async (req, res) => {
 });
 app.get('/back',(req,res)=>
     {
-        res.redirect('contest');
+        res.render('contest');
     });
 
 
