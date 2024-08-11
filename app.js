@@ -92,7 +92,8 @@ app.post('/screenshot', upload.single('screenshot'), async (req, res) => {
         try {
             const screenshot = new Screenshot({
                 name: req.body.uname,
-                screenshot: req.file.buffer // Save the screenshot as binary data
+                screenshot: req.file.buffer,
+                programming_language:req.body.program // Save the screenshot as binary data
             });
             await screenshot.save();
             res.render("success");
@@ -119,4 +120,4 @@ app.get("/back", async(req, res) => {
     res.render('contest',{ problems: problems });
 });
 
-
+    
